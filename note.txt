@@ -1,0 +1,78 @@
+Scheme compiler
+---
+Compile a small subset of scheme to native executable code
+
+Incremental approach
+---
+Based on Ghuloum's paper [http://scheme2006.cs.uchicago.edu/11-ghuloum.pdf]
+
+Implementation
+---
+Lexer -> Parser -> Code Generator -> Assembly code
+
+As the paper suggest its better to start with the simplest possibile grammar and then add stuff step by step
+
+The Code Generator will use the Parse Tree created by the parser to generate assembly code:
+    - No intermediate rappresentation for now
+
+Iteration 1
+---
+Grammar:
+    - <expr> ::= fixnum
+
+Example:
+    5
+
+Parse tree:
+    expr
+  /
+ 5 
+
+AST:
+    5
+
+Iteration 2
+---
+Grammar:
+    - <expr> ::= fixnum | boolean | char | null
+
+Lexer:
+Built implementing a DFA
+
+Iteration 3
+---
+Grammar:
+    - <expr> ::= <imm> | <expr_>
+    - <expr_> ::= (prim <expr>)
+    - <imm> ::= fixnum | boolean | char | null
+        
+Parser -> LL(1) type (stack-based)
+Lexer -> DFA
+
+TODO:
+    - [X] Refactor runtime related code
+
+Iteration 4
+---
+Grammar:
+    - <expr> ::= <atom> | ( <expr> <expr_tail> )
+    - <expr_tail> ::= <expr> <expr_tail> | EPSILON
+    - <atom> ::= prim | if | <imm>
+    - <imm> ::= fixnum | bool | char | null
+
+    - <expr> ::= <atom> | <list>
+    - <list> ::= ( <expr> <expr_tail> )
+    - <expr_tail> ::= <expr> <expr_tail> | EPSILON
+    - <atom> ::= prim | if | <imm>
+    - <imm> ::= fixnum | bool | char | null
+
+
+
+
+
+
+
+
+
+
+

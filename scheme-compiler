@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+exec python3 sc/main.py $*
