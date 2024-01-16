@@ -66,8 +66,25 @@ Grammar:
     - <atom> ::= prim | if | <imm>
     - <imm> ::= fixnum | bool | char | null
 
+Iteration 5
+---
+Binary primitives:
+    - fx+
+    - fx-
+    - fx=
+    - fx<
+    - fx>
+    - fx>=
+    - fx<=
+    - char=
+    - char>
+    - char<
+    - char>=
+    - char<=
+    - fxlogand
+    - fxlogor
 
-
+- Stack for handling binary primitives
 
 
 

@@ -32,7 +32,8 @@ def compile_to_asm(node:sc.parser.ParseTreeNode) -> str:
                 code += emit_expr(child)
     else:
         raise CompilerError
-    template = f'.section __TEXT,__text\n.globl _scheme_entry\n_scheme_entry:\n{code}\tret'
+    entry_point = f'\tmovq %rsp, %rcx\n\tmovq %rdi, %rsp\n\tmovl $1, -4(%rsp)\n\tcall L_scheme_entry\n\tmovq %rcx, %rsp\n\tretq'
+    template = f'.section __TEXT,__text\n.globl _scheme_entry\n_scheme_entry:\n{entry_point}\nL_scheme_entry:\n{code}\tretq\n'
     return template.strip()
 
 
