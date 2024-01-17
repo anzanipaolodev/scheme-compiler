@@ -4,9 +4,6 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
-/* Size of memory region which protect the stack */
-#define STACK_GUARD_SIZE 1
-
 /* Scheme types tags and masks */
 #define bool_f 0x2F
 #define bool_t 0x6F
