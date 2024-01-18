@@ -9,6 +9,9 @@ __pycache__/
 # Mac folder attributes
 .DS_Store
 
+# Executable files
+a.out
+
 # Vim swap files
 *.swp
 
